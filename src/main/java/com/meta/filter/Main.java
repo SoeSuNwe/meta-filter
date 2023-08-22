@@ -11,7 +11,6 @@ public class Main extends BaseFilterExpression {
                 "\"filter\":" +
                 "{\"firstName\":{\"contains\":\"Saurabh\"}}" +
                 "}";
-        ;
         String format="SQL";
         metaFilter(exp,format);
     }
