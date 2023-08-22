@@ -5,17 +5,18 @@ import com.meta.filter.transformer.ExpressionFormat;
 
 import java.io.IOException;
 
-public class Main extends BaseFilterExpression {
+public class MetaFilterExpression extends BaseFilterExpression {
     public static void main(String[] args) throws IOException {
         String exp = "{" +
                 "\"filter\":" +
                 "{\"firstName\":{\"contains\":\"Saurabh\"}}" +
                 "}";
-        String format="SQL";
-        metaFilter(exp,format);
+        String format = "SQL";
+        String filterExp = transForm(exp, format);
+        System.out.println("output filterExp => " + filterExp);
     }
 
-    private static void metaFilter(String jsonString,String format) throws IOException {
+    public static String transForm(String jsonString, String format) throws IOException {
 
         BaseFilterExpression baseFilterExpression = new BaseFilterExpression() {
             @Override
@@ -29,8 +30,7 @@ public class Main extends BaseFilterExpression {
             }
         };
         baseFilterExpression.setExpression(jsonString, ExpressionFormat.getFormat(format));
-        String filterExp = baseFilterExpression.getExpression();
-        System.out.println("output filterExp => " + filterExp);
+        return baseFilterExpression.getExpression();
     }
 }
 
