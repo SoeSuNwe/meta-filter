@@ -1,5 +1,6 @@
 package visitor;
 
+import com.meta.filter.transformer.BaseFilterExpression;
 import com.meta.filter.transformer.ExpressionFormat;
 import constant.SampleQueryConstant;
 import org.junit.Assert;
@@ -7,7 +8,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class SQLExpressionTest extends BaseFilterExpressionTest {
+public class SQLExpressionTest extends BaseFilterExpression {
     @Test
     public void filterExpressionSimple() throws IOException {
         String exp= SampleQueryConstant.BINARY_FILER;

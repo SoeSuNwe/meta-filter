@@ -1,13 +1,11 @@
-package visitor;
+package com.meta.filter.transformer;
 
 
 import java.io.IOException;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.meta.filter.transformer.ExpressionFormat;
-import com.meta.filter.transformer.FilterExpression;
 
-public abstract class BaseFilterExpressionTest {
+public abstract class BaseFilterExpression {
     private  String expression;
     public String getExpression() {
         return expression;
