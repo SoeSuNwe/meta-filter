@@ -11,76 +11,71 @@ public class SampleQueryConstant {
             "\"filter\" :" +
             "{ \"age\": {\"gte\": \"25\"}}" +
             "}";
-    public static final String COMPOUND_FILER_WITH_OR = "{\n" +
-            "\"filter\" : {\n" +
-            "      \"or\" : [{ \"firstName\" : {\"contains\" : \"Saurabh\"}},{ \"lastName\" : {\"equals\" : \"Jaiswal\"}}]\n" +
-            "    }" +
-            "}";
+    public static final String COMPOUND_FILER_WITH_OR = """
+            {"filter" : {
+                  "or" : [{ "firstName" : {"contains" : "Saurabh"}},{ "lastName" : {"equals" : "Jaiswal"}}]
+                }}""";
 
-    public static final String COMPOUND_FILER_WITH_AND = "{\n" +
-            "\"filter\" : {\n" +
-            "      \"and\" : [{ \"firstName\" : {\"contains\" : \"Saurabh\"}},{ \"lastName\" : {\"equals\" : \"Jaiswal\"}}]\n" +
-            "    }     " +
-            "}";
+    public static final String COMPOUND_FILER_WITH_AND = """
+            {
+            "filter" : {
+                  "and" : [{ "firstName" : {"contains" : "Saurabh"}},{ "lastName" : {"equals" : "Jaiswal"}}]
+                }     }""";
 
-    public static final String COMPOUND_FILER_WITH_AND_OR = "{\n" +
-            "\"filter\" :{\n" +
-            "      \"and\" : [\n" +
-            "        { \"firstName\" : {\"contains\" : \"Saurabh\"}},\n" +
-            "        { \"or\" : [{ \"lastName\": {\"equals\" : \"Jaiswal\"}},{ \"age\": {\"gte\": \"25\"}}]}" +
-            "       ]\n" +
-            "    }" +
-            "}";
-    public static final String COMPOUND_FILER_WITH_OR_AND = "{\n" +
-            "\"filter\" : {\n" +
-            "      \"or\" : [\n" +
-            "        { \"firstName\" : {\"contains\" : \"Saurabh\"}},\n" +
-            "        { \"and\" : [{ \"lastName\": {\"equals\" : \"Jaiswal\"}},{ \"age\": {\"gte\": \"25\"}}\n" +
-            "        ]}]\n" +
-            "    }"+
-            "}";
+    public static final String COMPOUND_FILER_WITH_AND_OR = """
+            {
+            "filter" :{
+                  "and" : [
+                    { "firstName" : {"contains" : "Saurabh"}},
+                    { "or" : [{ "lastName": {"equals" : "Jaiswal"}},{ "age": {"gte": "25"}}]}       ]
+                }}""";
+    public static final String COMPOUND_FILER_WITH_OR_AND = """
+            {
+            "filter" : {
+                  "or" : [
+                    { "firstName" : {"contains" : "Saurabh"}},
+                    { "and" : [{ "lastName": {"equals" : "Jaiswal"}},{ "age": {"gte": "25"}}
+                    ]}]
+                }}""";
 
-    public static final String COMPOUND_FILER_WITH_OR_OR_AND = "{\n" +
-            "\"filter\" : {\n" +
-            "      \"or\" : [\n"+
-            "          { \"firstName\": {\"contains\": \"Saurabh\"}},\n"+
-            "          { \"lastName\": {\"equals\": \"Jaiswal\"}},\n"+
-            "          { \"and\" : [\n"+
-            "             { \"firstName\": {\"equals\": \"Vinod\"}},\n"+
-            "             { \"age\": {\"gte\": \"30\"}}\n"+
-            "          ]}\n"+
-            "        ]\n"+
-            "    }" +
-            "}";
-//
-//    public static final String COMPOUND_FILER_WITH_AND_AND_OR = "{\n" +
-//            "\"filter\" : {\n" +
-//            "      and : [\n"+
-//            "          { firstName: {contains: \"Saurabh\"}},\n"+
-//            "          { lastName: {equals: \"Jaiswal\"}}\n"+
-//            "          { or : [\n"+
-//            "             { firstName: {equals: \"Vinod\"}},\n"+
-//            "             { age: {gte: 30}}\n"+
-//            "          ]}\n"+
-//            "        ]\n"+
-//            "    }) {\n"+
-//            "      firstName\n"+
-//            "      lastName\n"+
-//            "      age\n"+
-//            "    }\n"+
-//            "}";
-//
-//    public static final String COMPOUND_DATE_FILTER = "{\n" +
-//            "\"filter\" :  {\n" +
-//            "      or : [{ lastName : {equals : \"Jaiswal\"}}, {birthDate "+
-//            ":{gt : \"1996-12-19T16:39:57-08:00\"}}]\n"+
-//            "    }) {\n"+
-//            "      firstName\n"+
-//            "      lastName\n"+
-//            "      age\n"+
-//            "    }\n"+
-//            "}";
-//
+    public static final String COMPOUND_FILER_WITH_OR_OR_AND = """
+            {
+            "filter" : {
+                  "or" : [
+                      { "firstName": {"contains": "Saurabh"}},
+                      { "lastName": {"equals": "Jaiswal"}},
+                      { "and" : [
+                         { "firstName": {"equals": "Vinod"}},
+                         { "age": {"gte": "30"}}
+                      ]}
+                    ]
+                }}""";
+
+    public static final String COMPOUND_FILER_WITH_AND_AND_OR = """
+            {
+            "filter" : {
+                  "and" : [
+                      { "firstName": {"starts": "Saurabh"}},
+                      { "lastName": {"equals": "Jaiswal"}},
+                      { "or" : [
+                         { "firstName": {"ends": "Vinod"}},
+                         { "age": {"lte": "30"}}
+                      ]}
+                    ]
+                } }""";
+    public static final String NOT_FILTER = """
+            {
+            "filter": {
+                  "not" : { "firstName" : {"equals" : "Saurabh"} }
+              }}""";
+
+    public static final String COMPOUND_DATE_FILTER = """
+            {
+            "filter" :  {
+                  "or" : [
+                { "lastName" : {"equals" : "Jaiswal"}},   {"birthDate" :{"gt" : "1996-12-19T16:39:57-08:00"}}]
+                } }""";
+
 //    public static final String FILTER_WITH_OTHER_ARGS = "{\n" +
 //            "  searchEmployees (id: \"123\", filter : {\n" +
 //            "        firstName : {equals: \"Saurabh\"}\n" +
@@ -138,14 +133,7 @@ public class SampleQueryConstant {
 //                "  }\n" +
 //                "}";
 //
-//        public static final String NOT_FILTER = "{\n" +
-//                "  searchEmployees(filter: {\n" +
-//                "      not : { firstName : {equals : \"Saurabh\"} }\n" +
-//                "  }) {\n" +
-//                "    firstName\n" +
-//                "    lastName\n" +
-//                "  }\n" +
-//                "}";
+
 //
 //        public static final String NOT_COMPOUND_FILTER = "{\n" +
 //                "  searchEmployees(filter: {\n" +

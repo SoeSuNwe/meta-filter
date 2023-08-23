@@ -3,8 +3,9 @@ package com.meta.filter.transformer;
 public enum ExpressionFormat {
     SQL("SQL"),
 
-    INFIX("INFIX");
-    private String type;
+    INFIX("INFIX"),
+    INFIX_CUSTOM_OPERATOR("INFIX_CUSTOM_OPERATOR");
+    private final String type;
 
     ExpressionFormat(String type) {
         this.type = type;

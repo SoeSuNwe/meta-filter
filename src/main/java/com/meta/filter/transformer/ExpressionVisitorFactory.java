@@ -1,6 +1,7 @@
 package com.meta.filter.transformer;
 
 import com.meta.filter.visitor.ExpressionVisitor;
+import com.meta.filter.visitor.InfixExpressionCustomOperatorVisit;
 import com.meta.filter.visitor.InfixExpressionVisitor;
 import com.meta.filter.visitor.SQLExpressionVisitor;
 
@@ -12,14 +13,11 @@ public class ExpressionVisitorFactory {
                                                   FieldValueTransformer fieldValueTransformer) {
         ExpressionVisitor expressionVisitor = new InfixExpressionVisitor(fieldMap, fieldValueTransformer);
         if (format != null) {
-            switch (format) {
-                case INFIX:
-                    expressionVisitor = new InfixExpressionVisitor(fieldMap, fieldValueTransformer);
-                    break;
-                case SQL:
-                    expressionVisitor = new SQLExpressionVisitor(fieldMap, fieldValueTransformer);
-                    break;
-            }
+            expressionVisitor = switch (format) {
+                case INFIX -> new InfixExpressionVisitor(fieldMap, fieldValueTransformer);
+                case SQL -> new SQLExpressionVisitor(fieldMap, fieldValueTransformer);
+                case INFIX_CUSTOM_OPERATOR -> new InfixExpressionCustomOperatorVisit(fieldMap, fieldValueTransformer);
+            };
         }
         return expressionVisitor;
     }
