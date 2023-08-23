@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FilterExpression {
-    private final Map<String,String> fieldMap;
+    private final Map<String, String> fieldMap;
     private final Expression expressionAst;
     private final FieldValueTransformer fieldValueTransformer;
 
@@ -19,12 +19,12 @@ public class FilterExpression {
 
     public static class FilterExpressionBuilder {
 
-        private final Map<String,String> fieldMap;
+        private final Map<String, String> fieldMap;
         private Expression expressionAst;
         private Map args;
         private FieldValueTransformer fieldValueTransformer;
 
-        private FilterExpressionBuilder () {
+        private FilterExpressionBuilder() {
             fieldMap = new HashMap<>();
         }
 
@@ -50,11 +50,11 @@ public class FilterExpression {
         return new FilterExpressionBuilder();
     }
 
-    public <T> T getExpression(ExpressionFormat format) {
+    public <T> T getExpression() {
         if (expressionAst == null) {
             throw new InvalidFilterException("Missing or invalid filter arguments");
         }
-        ExpressionVisitor<T> expressionVisitor = ExpressionVisitorFactory.getExpressionVisitor(format, fieldMap, fieldValueTransformer);
+        ExpressionVisitor<T> expressionVisitor = ExpressionVisitorFactory.getExpressionVisitor(fieldMap, fieldValueTransformer);
         return expressionVisitor.expression(expressionAst);
     }
 }

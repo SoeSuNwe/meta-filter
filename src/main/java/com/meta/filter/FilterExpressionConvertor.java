@@ -1,22 +1,20 @@
 package com.meta.filter;
 
 import com.meta.filter.transformer.BaseFilterExpression;
-import com.meta.filter.transformer.ExpressionFormat;
 
 import java.io.IOException;
 
-public class MetaFilterExpression extends BaseFilterExpression {
+public class FilterExpressionConvertor extends BaseFilterExpression {
     public static void main(String[] args) throws IOException {
         String exp = "{" +
                 "\"filter\":" +
                 "{\"firstName\":{\"contains\":\"Saurabh\"}}" +
                 "}";
-        String format = "SQL";
-        String filterExp = transForm(exp, format);
+        String filterExp = convert(exp);
         System.out.println("output filterExp => " + filterExp);
     }
 
-    public static String transForm(String jsonString, String format) throws IOException {
+    public static String convert(String jsonString) throws IOException {
 
         BaseFilterExpression baseFilterExpression = new BaseFilterExpression() {
             @Override
@@ -25,11 +23,11 @@ public class MetaFilterExpression extends BaseFilterExpression {
             }
 
             @Override
-            public void setExpression(String jsonString, ExpressionFormat format) throws IOException {
-                super.setExpression(jsonString, format);
+            public void setExpression(String jsonString) throws IOException {
+                super.setExpression(jsonString);
             }
         };
-        baseFilterExpression.setExpression(jsonString, ExpressionFormat.getFormat(format));
+        baseFilterExpression.setExpression(jsonString);
         return baseFilterExpression.getExpression();
     }
 }

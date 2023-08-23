@@ -9,13 +9,13 @@ import java.util.Deque;
 import java.util.List;
 import java.util.Map;
 
-public class InfixExpressionCustomOperatorVisit implements ExpressionVisitor<String> {
+public class InfixExpressionVisit implements ExpressionVisitor<String> {
     private final Deque<Operator> operatorStack;
     private final Map<String, String> fieldMap;
     private final Deque<ExpressionField> fieldStack;
     private final FieldValueTransformer fieldValueTransformer;
 
-    public InfixExpressionCustomOperatorVisit(Map<String, String> fieldMap, FieldValueTransformer fieldValueTransformer) {
+    public InfixExpressionVisit(Map<String, String> fieldMap, FieldValueTransformer fieldValueTransformer) {
         this.operatorStack = new ArrayDeque<>();
         this.fieldMap = fieldMap;
         this.fieldStack = new ArrayDeque<>();
