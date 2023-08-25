@@ -9,7 +9,7 @@ public class SampleQueryConstant {
 
     public static final String BINARY_FILER_INT = "{" +
             "\"filter\" :" +
-            "{ \"age\": {\"gte\": \"25\"}}" +
+            "{ \"age\": {\"gte\": \"25\" }}" +
             "}";
     public static final String COMPOUND_FILER_WITH_OR = """
             {"filter" : {
@@ -46,7 +46,7 @@ public class SampleQueryConstant {
                       { "lastName": {"equals": "Jaiswal"}},
                       { "and" : [
                          { "firstName": {"equals": "Vinod"}},
-                         { "age": {"gte": "30"}}
+                         { "age": {"gte": 30}}
                       ]}
                     ]
                 }}""";
@@ -59,7 +59,7 @@ public class SampleQueryConstant {
                       { "lastName": {"equals": "Jaiswal"}},
                       { "or" : [
                          { "firstName": {"ends": "Vinod"}},
-                         { "age": {"lte": "30"}}
+                         { "age": {"lte": 30}}
                       ]}
                     ]
                 } }""";

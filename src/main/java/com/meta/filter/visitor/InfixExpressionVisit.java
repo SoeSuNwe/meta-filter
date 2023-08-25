@@ -28,7 +28,7 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
         if (expression != null) {
             expressionString = expression.accept(this, expressionString);
         }
-        System.out.println("\n INFIX_CUSTOM_OPERATOR expression => " + expressionString + "\n\n ---------------------------------------------------------------");
+        System.out.println("\n INFIX expression => " + expressionString + "\n\n ---------------------------------------------------------------");
         return expressionString;
     }
 
@@ -81,6 +81,7 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
 
         return expressionBuilder.toString();
     }
+
     @Override
     public String visitExpressionValue(ExpressionValue<? extends Comparable> value, String data) {
         StringBuilder expressionBuilder = new StringBuilder(data);
@@ -93,15 +94,7 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
                 value = new ExpressionValue(fieldValuePair.getValue());
             }
         }
-        if (operator == Operator.EQUALS) {
-            expressionBuilder.append("\"").append(value.infix()).append("\"");
-        } else if (operator == Operator.STARTS) {
-            expressionBuilder.append("\"/").append(value.infix()).append(".*/i").append("\"");
-        } else if (operator == Operator.ENDS) {
-            expressionBuilder.append("\"/.*").append(value.infix()).append("/i\"");
-        } else if (operator == Operator.CONTAINS) {
-            expressionBuilder.append("\"").append(value.infix()).append("\"");
-        } else if (operator == Operator.BETWEEN) {
+        if (operator == Operator.BETWEEN) {
             List<Comparable> expressionValues = (List<Comparable>) value.getValue();
             expressionBuilder.append("\"").append(expressionValues.get(0)).append("\"")
                     .append(" AND ")
@@ -117,9 +110,26 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
             }
             expressionBuilder.append(")");
         } else {
-            expressionBuilder.append("\"").append(value.infix()).append("\"");
+            expressionBuilder.append(resolveValue(operator, value.infix()));
         }
+        System.out.println(expressionBuilder);
         return expressionBuilder.toString();
+    }
+
+    private String resolveValue(Operator operator, String value) {
+        StringBuilder expressionValue = new StringBuilder();
+        switch (operator) {
+
+            /* Relational string operators*/
+            case EQUALS, CONTAINS -> expressionValue.append("\"").append(value).append("\"");
+            case STARTS -> expressionValue.append("\"/").append(value).append(".*/i").append("\"");
+            case ENDS -> expressionValue.append("\"/.*").append(value).append("/i\"");
+
+
+            /* Relational numeric operators*/
+            case LT, GT, EQ, GTE, LTE -> expressionValue.append(value);
+        }
+        return expressionValue.toString();
     }
 
     private String resolveOperator(Operator operator) {
