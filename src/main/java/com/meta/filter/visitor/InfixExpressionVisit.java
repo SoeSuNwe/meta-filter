@@ -121,9 +121,9 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
         switch (operator) {
 
             /* Relational string operators*/
-            case EQUALS, CONTAINS -> expressionValue.append("\"").append(value).append("\"");
-            case STARTS -> expressionValue.append("\"/").append(value).append(".*/i").append("\"");
-            case ENDS -> expressionValue.append("\"/.*").append(value).append("/i\"");
+            case EQUALS , CONTAINS -> expressionValue.append("/").append(value).append("/");
+            case STARTS -> expressionValue.append("/").append(value).append(".*/i");
+            case ENDS -> expressionValue.append("/.*").append(value).append("/i");
 
 
             /* Relational numeric operators*/
