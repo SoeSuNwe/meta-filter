@@ -61,9 +61,9 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
     public String visitUnaryExpression(UnaryExpression unaryExpression, String data) {
         //System.out.println("visitUnaryExpression=>" + expressionBuilder);
         return data + "(" +
-                " " + resolveOperator(unaryExpression.getOperator()) + " " +
-                unaryExpression.getLeftOperand().accept(this, "") +
-                ")";
+               " " + resolveOperator(unaryExpression.getOperator()) + " " +
+               unaryExpression.getLeftOperand().accept(this, "") +
+               ")";
     }
 
     @Override
@@ -121,7 +121,8 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
         switch (operator) {
 
             /* Relational string operators*/
-            case EQUALS , CONTAINS -> expressionValue.append("/").append(value).append("/");
+            case EQUALS -> expressionValue.append("/").append(value).append("/");
+            case CONTAINS -> expressionValue.append("/.*").append(value).append(".*/i");
             case STARTS -> expressionValue.append("/").append(value).append(".*/i");
             case ENDS -> expressionValue.append("/.*").append(value).append("/i");
 

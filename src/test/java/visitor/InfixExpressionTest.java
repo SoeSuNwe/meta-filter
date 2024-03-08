@@ -15,7 +15,7 @@ public class InfixExpressionTest extends BaseFilterExpression {
         setExpression(exp);
         String expression = getExpression();
         System.out.println("expression: "+expression);
-        String expectedExpression = "(@.firstName =~ /Saurabh/)";
+        String expectedExpression = "(@.firstName =~ /.*Saurabh.*/i)";
         Assert.assertEquals(expectedExpression, expression);
     }
     @Test
@@ -33,7 +33,7 @@ public class InfixExpressionTest extends BaseFilterExpression {
         System.out.println(exp);
         setExpression(exp);
         String expression = getExpression();
-        String expectedExpression = "((@.firstName =~ /Saurabh/) || (@.lastName == /Jaiswal/))";
+        String expectedExpression = "((@.firstName =~ /.*Saurabh.*/i) || (@.lastName == /Jaiswal/))";
         Assert.assertEquals(expectedExpression, expression);
     }
     @Test
@@ -42,7 +42,7 @@ public class InfixExpressionTest extends BaseFilterExpression {
         System.out.println(exp);
         setExpression(exp);
         String expression = getExpression();
-        String expectedExpression = "((@.firstName =~ /Saurabh/) && (@.lastName == /Jaiswal/))";
+        String expectedExpression = "((@.firstName =~ /.*Saurabh.*/i) && (@.lastName == /Jaiswal/))";
         Assert.assertEquals(expectedExpression, expression);
     }
     @Test
@@ -51,7 +51,7 @@ public class InfixExpressionTest extends BaseFilterExpression {
         System.out.println(exp);
         setExpression(exp);
         String expression = getExpression();
-        String expectedExpression = "((@.firstName =~ /Saurabh/) && ((@.lastName == /Jaiswal/) || (@.age >= 25)))";
+        String expectedExpression = "((@.firstName =~ /.*Saurabh.*/i) && ((@.lastName == /Jaiswal/) || (@.age >= 25)))";
         Assert.assertEquals(expectedExpression, expression);
     }
     @Test
@@ -60,7 +60,7 @@ public class InfixExpressionTest extends BaseFilterExpression {
         System.out.println(exp);
         setExpression(exp);
         String expression = getExpression();
-        String expectedExpression = "((@.firstName =~ /Saurabh/) || ((@.lastName == /Jaiswal/) && (@.age >= 25)))";
+        String expectedExpression = "((@.firstName =~ /.*Saurabh.*/i) || ((@.lastName == /Jaiswal/) && (@.age >= 25)))";
         Assert.assertEquals(expectedExpression, expression);
     }
     @Test
@@ -69,7 +69,7 @@ public class InfixExpressionTest extends BaseFilterExpression {
         System.out.println(exp);
         setExpression(exp);
         String expression = getExpression();
-        String expectedExpression = "(((@.firstName =~ /Saurabh/) || (@.lastName == /Jaiswal/)) || ((@.firstName == /Vinod/) && (@.age >= 30)))";
+        String expectedExpression = "(((@.firstName =~ /.*Saurabh.*/i) || (@.lastName == /Jaiswal/)) || ((@.firstName == /Vinod/) && (@.age >= 30)))";
         Assert.assertEquals(expectedExpression, expression);
     }
     @Test
