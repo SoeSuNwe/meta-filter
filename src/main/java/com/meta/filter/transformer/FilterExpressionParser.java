@@ -57,6 +57,7 @@ public class FilterExpressionParser {
                             binaryExpression.setRightOperand(expressionValue);
                         } else {
                             ExpressionValue<Comparable> expressionValue = new ExpressionValue<>(convertIfDate((Comparable) entry.getValue()));
+                            System.out.println(".......expressionValue"+expressionValue);
                             binaryExpression.setRightOperand(expressionValue);
                         }
                         expression = binaryExpression;

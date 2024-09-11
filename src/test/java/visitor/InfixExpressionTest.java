@@ -100,4 +100,15 @@ public class InfixExpressionTest extends BaseFilterExpression {
         String expectedExpression = "((@.lastName == /Jaiswal/) || (@.birthDate > 1996-12-19T16:39:57-08:00))";
         Assert.assertEquals(expectedExpression, expression);
     }
+
+
+    @Test
+    public void testBetweenOperator() throws IOException {
+        String exp = SampleQueryConstant.FILTER_WITH_BETWEEN;
+        System.out.println(exp);
+        setExpression(exp);
+        String expression = getExpression();
+        String expectedExpression = "(@.age  >=10 AND 20<=)";
+        Assert.assertEquals(expectedExpression, expression);
+    }
 }

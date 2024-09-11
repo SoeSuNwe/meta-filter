@@ -94,11 +94,14 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
                 value = new ExpressionValue(fieldValuePair.getValue());
             }
         }
-        if (operator == Operator.BETWEEN) {
+        if (operator == Operator.RANGE) {
             List<Comparable> expressionValues = (List<Comparable>) value.getValue();
-            expressionBuilder.append("\"").append(expressionValues.get(0)).append("\"")
+            if (expressionValues.size() != 2) {
+                throw new IllegalArgumentException("BETWEEN operator expects a list of two values representing the range.");
+            }
+            expressionBuilder.append(">=").append(expressionValues.get(0))
                     .append(" AND ")
-                    .append("\"").append(expressionValues.get(1)).append("\"");
+                    .append(expressionValues.get(1)).append("<=");
         } else if (operator == Operator.IN) {
             List<Comparable> expressionValues = (List<Comparable>) value.getValue();
             expressionBuilder.append("(");
@@ -123,12 +126,17 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
             /* Relational string operators*/
             case EQUALS -> expressionValue.append("/").append(value).append("/");
             case CONTAINS -> expressionValue.append("/.*").append(value).append(".*/i");
-            case STARTS -> expressionValue.append("/").append(value).append(".*/i");
+            case PREFIX -> expressionValue.append("/").append(value).append(".*/i");
             case ENDS -> expressionValue.append("/.*").append(value).append("/i");
 
 
             /* Relational numeric operators*/
             case LT, GT, EQ, GTE, LTE -> expressionValue.append(value);
+
+            /* Range operators */
+            case RANGE -> {
+               System.out.println("between :"+value);
+            }
         }
         return expressionValue.toString();
     }
@@ -142,7 +150,8 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
 
             /* Relational string operators*/
             case EQUALS -> "==";
-            case CONTAINS, STARTS, ENDS -> "=~";
+            case WILDCARD -> null;
+            case CONTAINS, PREFIX, ENDS -> "=~";
 
             /* Relational numeric operators*/
             case LT -> "<";
@@ -153,7 +162,7 @@ public class InfixExpressionVisit implements ExpressionVisitor<String> {
 
             /* Common operators */
             case IN -> "IN";
-            case BETWEEN -> "BETWEEN";
+            case RANGE -> "";
         };
     }
 }

@@ -9,7 +9,8 @@ public enum Operator {
     /* String Operators */
     EQUALS("equals", "String", Kind.BINARY),
     CONTAINS("contains", "String",  Kind.BINARY),
-    STARTS("starts", "String",  Kind.BINARY),
+    PREFIX("prefix", "String",  Kind.BINARY),
+    WILDCARD("wildcard", "String",  Kind.BINARY),
     ENDS("ends", "String",  Kind.BINARY),
 
     /* Numeric Operators */
@@ -21,7 +22,7 @@ public enum Operator {
 
     /* Range Operators */
     IN("in", "String|Numeric",  Kind.BINARY),
-    BETWEEN("between","DateTime|Numeric", Kind.BINARY);
+    RANGE("range","DateTime|Numeric", Kind.BINARY);
 
     /**
      * Enum of operator kind.

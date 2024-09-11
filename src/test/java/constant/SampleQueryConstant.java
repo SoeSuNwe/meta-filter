@@ -76,16 +76,31 @@ public class SampleQueryConstant {
                 { "lastName" : {"equals" : "Jaiswal"}},   {"birthDate" :{"gt" : "1996-12-19T16:39:57-08:00"}}]
                 } }""";
 
-//    public static final String FILTER_WITH_OTHER_ARGS = "{\n" +
-//            "  searchEmployees (id: \"123\", filter : {\n" +
-//            "        firstName : {equals: \"Saurabh\"}\n" +
-//            "    }) {\n" +
-//            "      firstName\n" +
-//            "      lastName\n" +
-//            "      age\n" +
-//            "    }\n" +
-//            "}";
-//
+    public static final String FILTER_WITH_OTHER_RANGE ="""
+            {
+                "filter": {
+                  "age": {
+                    "between": {
+                      "min": 10,
+                      "max": 20
+                    }
+                  }
+                }
+              }
+            """;
+    public static final String FILTER_WITH_BETWEEN = """
+            {
+              "filter": {
+                "age": {
+                  "range": [
+                    10,
+                    20
+                  ]
+                }
+              }
+            }
+             """;
+
 //    public static final String FILTER_WITH_VARIABLE = "query searchEmployeesWithFilter ($employeeFilter :  " +
 //            "EmployeeFilter = {\n" +
 //            "      and : [{ firstName : {contains : \"Saurabh\"}},{ lastName : {equals : \"Jaiswal\"}}]\n" +
